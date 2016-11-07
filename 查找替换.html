@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			div {
+				width: 300px;
+				border: 1px solid #000;
+				font: 14px / 30px "宋体";
+				height: 300px;
+				overflow: auto;
+			 }
+		</style>
+	</head>
+	<script type="text/javascript">
+		window.onload = function (){
+			var div = document.getElementsByTagName('div')[0];
+			var inputs = document.getElementsByTagName('input');
+			
+			inputs[2].onclick = function (){
+				var str = div.innerHTML;
+				var value = inputs[0].value;
+				str = cler(str,"<mark>");
+				str = cler(str,"</mark>");
+				var arr = str.split(value);
+				div.innerHTML = arr[0];
+				for(var i=1;i<arr.length;i++){
+					div.innerHTML += '<mark>'+value+'</mark>'+arr[i];
+				}
+				
+			}
+			
+			//清除其余颜色
+			function cler(str,str2){
+				var arr = str.split(str2);
+				var str3 = '';
+				for(var i=0;i<arr.length;i++){
+					str3+=arr[i];
+				}
+				return str3;
+			}
+			
+//第二遍			
+//			inputs[2].onclick = function (){
+//				var text1 = div.innerHTML;
+//				var textValue = inputs[0].value;
+//				var arr = text1.split(textValue);
+//				div.innerHTML = arr[0];
+//				console.log(arr)
+//				for(var i=1;i<arr.length;i++){
+//					div.innerHTML += '<mark>'+textValue+'</mark>'+arr[i];
+//				}
+//				
+//			}
+			
+//第一遍！			
+//			inputs[2].onclick = function (){
+//				var text1 = div.innerHTML;//把内容存起来
+//				var conText = inputs[0].value;//得到第输入框内容
+//				var arr = text1.split(conText);//通过这个内容分割成多个数组。
+//				div.innerHTML = arr[0];//让div内容等于第一个内容
+//				for(var i=1;i<arr.length;i++){//从1开始循环这个数组
+//					div.innerHTML += '<mark>'+conText+'</mark>'+arr[i]//让切出来的内容加上标记并拼上后面的数组。
+//				}
+//			}
+		}
+	</script>
+	<body>
+		<div contenteditable="true">台媒称，世界第一<mark>高楼</mark>即将洗牌，阿拉伯联合酋长国最大的地产商艾马尔（Emaar）集团10日表示，将在<mark>迪拜</mark>拉斯艾豪尔（Ras Al Kho）耗资10亿美金打造更高的新建筑，预计2020年完成。</div>
+			<br/>
+			<input type="text" />
+			<input type="button" value="查找下一个" />
+			<input type="button" value="查找全部" /> <br />
+			<input type="text" /><input type="button" value="替换" /> 
+			<input type="button" value="替换全部" />
+	</body>
+</html>
